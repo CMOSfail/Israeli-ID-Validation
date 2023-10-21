@@ -3,10 +3,12 @@
 valid_id_str(IdStr) :-
    string_chars(IdStr, IdChars),
    maplist(atom_number, IdChars, Id),
-   valid_id(Id).
+   valid_id(Id), !.
 
 valid_id(Id) :-
    length(Id, Len),
+   append([FirstDigit], _, Id),
+   FirstDigit in 1..9,
    Len in 0..9,
    Id ins 0..9,
    NeededZeros #= 9 - Len,
