@@ -7,17 +7,15 @@ valid_id_str(IdStr) :-
 
 valid_id(Id) :-
    length(Id, Len),
+   Len in 0..9,
    append([FirstDigit], _, Id),
    FirstDigit in 1..9,
-   Len in 0..9,
    Id ins 0..9,
    NeededZeros #= 9 - Len,
    length(Zeros, NeededZeros),
    maplist(#=(0), Zeros),
-
    append(Zeros, Id, Padded),
    append(IdInit, [CheckDigit], Padded),
-
    label(Id),
    check_digit(IdInit, CheckDigit).
 
