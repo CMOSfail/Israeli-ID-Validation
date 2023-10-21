@@ -8,7 +8,7 @@ valid_id_str(IdStr) :-
 valid_id(Id) :-
    length(Id, Len),
    Len in 0..9,
-   append([FirstDigit], _, Id),
+   Id = [FirstDigit | _],
    FirstDigit in 1..9,
    Id ins 0..9,
    NeededZeros #= 9 - Len,
